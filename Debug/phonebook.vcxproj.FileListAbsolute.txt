@@ -1,0 +1,3 @@
+C:\Users\ahmed\Desktop\phonebook\Debug\phonebook.exe
+E:\phonebook\Debug\phonebook.exe
+C:\Users\ahmed\Downloads\phonebook\Debug\phonebook.exe
