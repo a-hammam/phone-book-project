@@ -42,3 +42,30 @@ INCLUDE Irvine32.inc
 		arr DB arrSize DUP(0)		; Array holds whole contact''s names and numbers
 
 		nelement dd 0
+.code
+
+	main proc
+
+		mov	edx, OFFSET filename		; register'EDX'holds offset of file name
+		call	OpenInputFile; procedure that open file
+		mov	outfile1, eax
+
+		mov	edx, OFFSET arr				; register 'EDX' holds offset of the array
+		mov	ecx, 1200
+		call	ReadFromFile			; procedure for reading from file
+
+		mov eax, outfile1
+		call CloseFile;procedure for closing the file
+		;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+		mov	edx, OFFSET elem 
+		call	OpenInputFile			; procedure for opening a file
+		mov	outfile2, eax
+
+		mov	edx, offset nelement		; register'edx' holds the offeset of num of elements
+		mov	ecx,1
+		call	ReadFromFile
+		mov eax, outfile2
+		call CloseFile
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
