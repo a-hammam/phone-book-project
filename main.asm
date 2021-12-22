@@ -69,3 +69,39 @@ INCLUDE Irvine32.inc
 		call CloseFile
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+home:
+
+		; The following code will show elements of the menu
+		mov edx, OFFSET msg; register 'edx' holds msg offset
+		call WriteString
+		call Crlf
+
+		mov edx, OFFSET msg1		; register 'edx' holds msg1 offset
+		call WriteString
+		call Crlf
+		mov edx, OFFSET msg2		; register 'edx' holds msg2 offset
+		call WriteString
+		call Crlf
+
+		mov edx, OFFSET msg3		; register 'edx' holds msg3 offset
+		call WriteString
+		call Crlf
+
+		mov edx, OFFSET msg4		; register 'edx' holds msg4 offset
+		call WriteString
+		call Crlf
+
+
+		call ReadInt
+		; The following code to compare user`s input to jump to the correct procedure
+		cmp eax,1
+		je  Add_contact
+		cmp eax,2
+		je  remove
+		cmp eax,3
+		je  search
+		cmp eax,4
+		je  view_all
+		jne Wrong_choise
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
