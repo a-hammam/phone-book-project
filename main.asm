@@ -106,6 +106,32 @@ home:
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 Add_contact:
+
+
+		mov edx, OFFSET enter_name		; register 'edx' holds ''enter_name' offset
+		call WriteString				; procedur will print the content of the string 'enter_name'
+		call Crlf
+
+		; The following code to recieve the name from the user
+		mov edx, OFFSET name1			; register 'edx' holds 'name1' offset
+		mov ecx, 12						; register 'ecx' holds the size of 'name1'
+		call ReadString					; procedure will take input string from user
+		call Crlf
+
+		mov ebx, nelement				; register 'edx' holds 'nelements' offset
+		mov eax, 24						; register 'ecx' holds the size of 'nelements'
+		mul ebx
+		add eax, offset arr
+
+		INVOKE Str_copy,				; procedure for copying the string to a specifc destination
+		ADDR name1, ; source
+		ADDR[eax]; destination
+
+		
+		;the following code to increase number of elements
+		mov eax,nelement
+		inc eax
+		mov nelement,eax
 	
 jmp again
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
