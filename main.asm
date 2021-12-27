@@ -127,6 +127,27 @@ Add_contact:
 		ADDR name1, ; source
 		ADDR[eax]; destination
 
+
+			mov edx, OFFSET enter_number	; register 'edx' holds the offset of 'enter_number'
+		call WriteString
+		call Crlf
+		; The following code to recieve the number from the user
+		mov edx, OFFSET number
+		mov ecx, 12
+		call ReadString
+		call Crlf
+		; The following code to place the number after the name
+		mov ebx, nelement
+		mov eax, 24
+		mul ebx
+		add eax, 12
+		add eax, offset arr
+
+
+		INVOKE Str_copy,				; This procedure to copy the number to the destination
+		ADDR number, ; source
+		ADDR[eax]; destination
+
 		
 		;the following code to increase number of elements
 		mov eax,nelement
