@@ -170,7 +170,19 @@ jmp again
 		jmp again
 	
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	view_all:
+	view_all:;this function is used to display all numbers/names that is stored in the array
+	
+		mov ecx,nelement						;copies the current number of elements to ecx register
+		cmp ecx,0
+		je no_elm								;if there is no elements jump to label no_elm
+
+		mov ebx,0			
+		theloop2:
+		mov eax,24
+		mul ebx
+		add eax,offset arr		;copies the offset of the array to eax register and add the counter to it which is the  mul of ebx and 24
+
+
 
 
 		jmp again
