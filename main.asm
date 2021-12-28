@@ -170,7 +170,7 @@ jmp again
 		jmp again
 	
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	view_all:;this function is used to display all numbers/names that is stored in the array
+	view_all:					;this function is used to display all numbers/names that is stored in the array
 	
 		mov ecx,nelement						;copies the current number of elements to ecx register
 		cmp ecx,0
@@ -183,6 +183,17 @@ jmp again
 		add eax,offset arr		;copies the offset of the array to eax register and add the counter to it which is the  mul of ebx and 24
 
 
+		
+		mov edx,eax
+		call WriteString							;prints out the current name to the screen
+		mov edx,OFFSET space						;prints out the space to the screen	
+		call WriteString
+
+
+		add eax,12										;prints out the number of that name to the screen
+		mov edx,eax
+		call WriteString
+		call Crlf
 
 
 		jmp again
