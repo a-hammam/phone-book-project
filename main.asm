@@ -153,6 +153,37 @@ Add_contact:
 		mov eax,nelement
 		inc eax
 		mov nelement,eax
+
+		;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		;The following code to write the date to the file
+		mov edx,offset filename
+		call CreateOutputFile
+		mov outfile1, eax
+
+		mov eax, outfile1				 ; just for illustration - here, eax already contains the handle
+		mov edx,offset arr
+		mov ecx, 1200
+		call WriteToFile
+
+		mov eax, outfile1
+		call CloseFile
+		;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		; The following code to write num of elements to another file
+		mov edx,offset elem
+		call CreateOutputFile
+		mov outfile2, eax
+
+		mov eax, outfile2				 ; just for illustration - here, eax already contains the handle
+		mov edx,offset nelement
+		mov ecx,1
+		call WriteToFile
+
+		mov eax, outfile2
+		call CloseFile
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	
 jmp again
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
