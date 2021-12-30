@@ -188,7 +188,19 @@ Add_contact:
 jmp again
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	remove:
+			mov edx,OFFSET enter_name						 ;print out a message that asks for the name that the user want to delete 
+		call WriteString
+		call Crlf
+	
+		mov edx,OFFSET name1						 ;read the name that the user wants to remove
+		mov ecx,12
+		call ReadString
+		call Crlf
 
+		mov ecx,nelement					;copies the number of currently registered names to the counter regiser ecx
+		cmp ecx,0					; compares if we have  registered names =0
+		je notfound2					;jump to label notfound2 if nelemenets=0
+		mov ebx,0
 	
 
 
