@@ -196,7 +196,40 @@ jmp again
 	
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	search:
+		mov edx,OFFSET enter_name		;ask the user to enter the name he wants to search for his number
+		call WriteString
+		call Crlf
 	
+		mov edx,OFFSET name1		;read the name the user wants to search for in a string called name1
+		mov ecx,12				
+		call ReadString
+		call Crlf
+
+		mov ecx,nelement		;loop for the nelements for the entire array and store in ecx register the counter
+		cmp ecx,0
+		je notfound				;if nelements=0 jump to label notfound
+		mov ebx,0
+
+		loop1:
+		mov eax,24					;loop the array with a counter of (24 bits) number of ecx times
+		mul ebx
+		add eax,offset arr
+
+		INVOKE Str_copy,				;copies what the eax register points to into str1 label
+		ADDR [eax],
+		ADDR str1
+
+		INVOKE Str_compare,				;compare if the string the user entered which is in name1 and the counter string str1
+		ADDR name1,
+		ADDR str1
+
+		je  equal      ;jump if string1 = string2
+		inc ebx
+		loop loop1
+		notfound:
+		mov edx,OFFSET not_found		;prints out a message to tell searched name was not found
+		call WriteString
+		call Crlf
 
 		jmp again
 	
