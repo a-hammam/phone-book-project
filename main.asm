@@ -244,6 +244,25 @@ jmp again
 		call Crlf
 
 		jmp again
+		equal:
+
+		add eax,12			
+		INVOKE Str_copy,
+		ADDR [eax],
+		ADDR number
+
+		mov edx,OFFSET str1			;prints out the name of the searched user
+		call WriteString
+		call Crlf
+
+	
+ 
+		mov edx,OFFSET number	;prints out the number of the searched user
+		call WriteString
+		call Crlf
+
+
+		jmp again
 	
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	view_all:					;this function is used to display all numbers/names that is stored in the array
