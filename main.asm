@@ -265,7 +265,8 @@ jmp again
 		jmp again
 	
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	view_all:					;this function is used to display all numbers/names that is stored in the array
+	view_all:
+					;this function is used to display all numbers/names that is stored in the array
 	
 		mov ecx,nelement						;copies the current number of elements to ecx register
 		cmp ecx,0
@@ -290,9 +291,21 @@ jmp again
 		call WriteString
 		call Crlf
 
+		mov edx,OFFSET line								;prints out the a line to the screen
+		call WriteString
+		call Crlf
+
+		inc ebx						;increment the counter
+		loop theloop2
+        
+		jmp again			;jump to label again
+		no_elm:
+
+		mov edx,OFFSET msg5					;print out a message to screen no element to view
+		call WriteString
+		call Crlf
 
 		jmp again
-	
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 	Wrong_choise:
