@@ -279,6 +279,15 @@ jmp again
 		add eax,offset arr		;copies the offset of the array to eax register and add the counter to it which is the  mul of ebx and 24
 
 
+
+		INVOKE Str_copy,                      ;copies what the eax register points to to str1 which we will use to compare
+		ADDR [eax],
+		ADDR str1
+
+		INVOKE Str_compare,                     ;compare the name that user has entered and the string that we saved and if the both is correct we jump to equal2 label which further removes the number and name the user wants
+		ADDR emptyarr,
+		ADDR str1
+		je emptyarray
 		
 		mov edx,eax
 		call WriteString							;prints out the current name to the screen
@@ -299,6 +308,9 @@ jmp again
 		loop theloop2
         
 		jmp again			;jump to label again
+		emptyarray:
+			inc ebx
+			loop theloop2
 		no_elm:
 
 		mov edx,OFFSET msg5					;print out a message to screen no element to view
