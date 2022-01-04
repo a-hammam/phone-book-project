@@ -201,10 +201,28 @@ jmp again
 		cmp ecx,0					; compares if we have  registered names =0
 		je notfound2					;jump to label notfound2 if nelemenets=0
 		mov ebx,0
-	
+	    	loop3: 
+		mov eax,24                       ; the 24 bits holds 12 bits for name and 12 bits for number so we want to jump 24bits each time we achieve that by multiplying 0,1.. which is stored in ebx till we reach our nelements(ecx)
+		mul ebx
+		add eax,offset arr                     ; we add the offset of the array that we stored our names/numbers in to our counter
 
+		INVOKE Str_copy,                      ;copies what the eax register points to to str1 which we will use to compare
+		ADDR [eax],
+		ADDR str1
 
-		jmp again
+		INVOKE Str_compare,                     ;compare the name that user has entered and the string that we saved and if the both is correct we jump to equal2 label which further removes the number and name the user wants
+		ADDR name1,
+		ADDR str1
+
+		je  equal2                  ;jump if string1 = string2
+		inc ebx                  ;increment the counter to jump 0x24 then 1x24 etc
+		loop loop3
+		notfound2:
+		mov edx,OFFSET not_found                ;if nelements=0 we print out this message(not_found)which we initialized in the .data section  or the loop3 has finished and didnt jump to label equal2
+		call WriteString
+		call Crlf ; print new line
+
+		jmp again; 
 	
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	search:
