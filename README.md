@@ -3,7 +3,7 @@
 ## team members
 - Ahmed Mohamed Hasaneen
 - Ahmed Mohamed Abdullah
-- Ahmed Magdy
+- Ahmed Magdy Abdelrahman
 - Ahmed Ashraf Qasem
 - Mario George Shafik
 ---
