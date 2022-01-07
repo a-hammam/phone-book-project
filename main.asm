@@ -189,7 +189,7 @@ jmp again
 		ADDR [eax],
 		ADDR str1
 
-		INVOKE Str_compare,                     ;compare the name that user has entered and the string that we saved and if the both is correct we jump to equal2 label which further removes the number and name the user wants
+		INVOKE Str_compare,                     ;compare the empty array with what is stored inside the array when we removed it so we dont copy empty array
 		ADDR emptyarr,
 		ADDR str1
 		je emptyarray
@@ -214,8 +214,8 @@ jmp again
         
 		jmp again			;jump to label again
 		emptyarray:
-			inc ebx
-			loop theloop2
+			inc ebx			;if the element is empty array so we pass 24 bit by eax thats by increasing the counter that we multiply it by 
+			loop theloop2		;we use loop to decrement the ecx by 1 because ecx already contains the number of elements in the array with the removed element 
 		no_elm:
 
 		mov edx,OFFSET msg5					;print out a message to screen no element to view
