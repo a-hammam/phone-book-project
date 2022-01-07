@@ -223,6 +223,34 @@ jmp again
 		call Crlf ; print new line
 
 		jmp again; 
+		equal2:
+	 
+		INVOKE Str_copy,		;copies empty string  to what the eax register points to
+		ADDR emptyarr,
+		ADDR [eax]
+
+
+		add eax,12    ;add 12 bits to eax register
+		INVOKE Str_copy,			;copies empty string  to what the eax register points to
+		ADDR emptyarr, 
+		ADDR [eax]
+
+		mov edx,OFFSET deleted					;print out message to tell user it has been deleted
+		call WriteString
+		call Crlf
+
+
+		mov edx,offset filename
+		call CreateOutputFile
+		mov outfile1, eax
+							;we update the array with the new content after deletion
+		mov eax, outfile1   ; just for illustration - here, eax already contains the handle
+		mov edx,offset arr			;copies the offset of the array to edx register
+		mov ecx, 1200		;copies the size of the array to ecx register
+		call WriteToFile
+
+		mov eax, outfile1	
+		call CloseFile
 	
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	search:
